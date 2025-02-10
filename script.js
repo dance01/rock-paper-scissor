@@ -1,5 +1,6 @@
 alert("Welcome to my Rock Scissor Paper\nIt's five rounds\nLet's go!")
 playGame();
+
 function playGame(){
     let humanScore = 0;
     let computerScore = 0;
