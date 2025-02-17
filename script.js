@@ -1,3 +1,7 @@
+let humanScore = 0;
+let computerScore = 0;
+let counter = 0;
+
 const rock = document.querySelector("#rock");
 const paper = document.querySelector("#paper");
 const scissors = document.querySelector("#scissors");
@@ -6,57 +10,86 @@ rock.addEventListener("click", () => playRound('rock'));
 paper.addEventListener("click", () => playRound('paper'));
 scissors.addEventListener("click", () => playRound('scissors'));
 
-let humanScore = 0;
-let computerScore = 0;
+let divHuman = document.querySelector('#divHuman');
+const paraHuman = document.createElement('p');
+let divComputer = document.querySelector('#divComputer');
+const paraComputer = document.createElement('p');
+let divResult = document.querySelector('#results');
+const paraResult = document.createElement('p');
+let humanPoint = document.querySelector('#humanPoint');
+let computerPoint = document.querySelector('#computerPoint');
+
+humanPoint.textContent = `YOUR POINTS: ${humanScore}`;
+computerPoint.textContent = `COMPUTER POINTS: ${computerScore}`;
+
 function playRound(hSelection){
+    if (counter > 0){
+    divHuman.removeChild(paraHuman);
+    divComputer.removeChild(paraComputer);
+    divResult.removeChild(paraResult);
+    };
     
+    let result = '';
+    let cSelection = "";
     let humanSelection = hSelection;
     let computerSelection = getRandomInt(3);
 
     switch (humanSelection){
         case "rock":
             humanSelection = 0;
-            console.log("YOU: rock");
             break;
         case "paper":
             humanSelection = 1;
-            console.log("YOU: paper");
             break;
         case "scissors":
-            console.log("YOU: scissors");
             humanSelection = 2;
             break;
     };
-
+    
     if (computerSelection === 0)
-        console.log("Computer: rock");
+        cSelection = 'rock'
     else if (computerSelection === 1)
-        console.log("Computer: paper");
+        cSelection = 'paper'
     else if (computerSelection === 2)
-        console.log("Computer: scissors");
+        cSelection = 'scissors'
 
     if (humanSelection === computerSelection){
-        console.log("pair!");
+        result = 'pair'
     }
     else if (humanSelection === 0 && computerSelection === 2
             || humanSelection === 1 && computerSelection === 0
             || humanSelection === 2 && computerSelection === 1){
-        console.log("Win!");
+        result = 'won'
         humanScore ++;
     }
     else {
-        console.log("Lose!");
+        result = 'lost'
         computerScore ++;
     }
+    
+    paraHuman.textContent = `You: ${hSelection}`
+    divHuman.appendChild(paraHuman);
+    paraComputer.textContent = `Computer: ${cSelection}`
+    divComputer.appendChild(paraComputer);
+    paraResult.textContent = `${result}`
+    divResult.appendChild(paraResult);
 
-    console.log("Your Point: ", humanScore);
-    console.log("Computer Point: ", computerScore);
+    humanPoint.textContent = `YOUR POINTS: ${humanScore}`;
+    computerPoint.textContent = `COMPUTER POINTS: ${computerScore}`;
+
+    counter ++;
+
+if (humanScore > computerScore && humanScore === 5){
+    alert(`YOU WON! ${humanScore} to ${computerScore}`)
+    computerScore = 0;
+    humanScore = 0;
 }
-// if (humanScore > computerScore)
-//     alert(`YOU WON! ${humanScore} to ${computerScore}`)
-// else if (humanScore < computerScore)
-//     alert(`YOU LOST! ${humanScore} to ${computerScore}`)
-// else alert(`PAIR! ${humanScore} to ${computerScore}`)
+else if (humanScore < computerScore && computerScore === 5){
+    alert(`YOU LOST! ${humanScore} to ${computerScore}`)
+    computerScore = 0;
+    humanScore = 0;
+}
+}
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
