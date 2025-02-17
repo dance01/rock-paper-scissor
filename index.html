@@ -5,16 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissor</title>
     <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="divHuman">YOUR CHOICE:
-    <button id="rock">ROCK</button>
-    <button id="paper">PAPER</button>
-    <button id="scissors">SCISSORS</button>
-</div>
+    <h1>ROCK - PAPER - SCISSOR</h1>
+    <div id="multipleChoices">
+        <p>YOUR CHOICE:</p>
+        <div class="buttons">
+        <button id="rock"><img src="images/rock.svg"/></button>
+        <button id="paper"><img src="images/paper.svg"/></button>
+        <button id="scissors"><img src="images/scissors.svg"/></button>
+        </div>
+    </div>
 
-    <div id="divComputer"></div>
-    <div id="results"></div>
+    <div id="selectedChoices">
+        <div id="divHuman"></div>
+        <div id="results"></div>
+        <div id="divComputer"></div>
+    </div>
+
+    
     <div class="point">
         <ul>
             <li id="humanPoint"> </li>

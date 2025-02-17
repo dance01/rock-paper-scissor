@@ -11,9 +11,9 @@ paper.addEventListener("click", () => playRound('paper'));
 scissors.addEventListener("click", () => playRound('scissors'));
 
 let divHuman = document.querySelector('#divHuman');
-const paraHuman = document.createElement('p');
+const paraHuman = document.createElement('img');
 let divComputer = document.querySelector('#divComputer');
-const paraComputer = document.createElement('p');
+const paraComputer = document.createElement('img');
 let divResult = document.querySelector('#results');
 const paraResult = document.createElement('p');
 let humanPoint = document.querySelector('#humanPoint');
@@ -54,22 +54,25 @@ function playRound(hSelection){
         cSelection = 'scissors'
 
     if (humanSelection === computerSelection){
-        result = 'pair'
+        result = 'PAIR!'
+        paraResult.setAttribute("style", "color:grey");
     }
     else if (humanSelection === 0 && computerSelection === 2
             || humanSelection === 1 && computerSelection === 0
             || humanSelection === 2 && computerSelection === 1){
-        result = 'won'
+        result = 'WON!'
+        paraResult.setAttribute("style", "color:green");
         humanScore ++;
     }
     else {
-        result = 'lost'
+        result = 'LOST!'
+        paraResult.setAttribute("style", "color:red");
         computerScore ++;
     }
     
-    paraHuman.textContent = `You: ${hSelection}`
+    paraHuman.src = `./images/${hSelection}.svg`
     divHuman.appendChild(paraHuman);
-    paraComputer.textContent = `Computer: ${cSelection}`
+    paraComputer.src = `./images/${cSelection}.svg`
     divComputer.appendChild(paraComputer);
     paraResult.textContent = `${result}`
     divResult.appendChild(paraResult);
